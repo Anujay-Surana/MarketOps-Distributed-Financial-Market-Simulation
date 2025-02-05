@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Instruments</title>
+</head>
+<body>
+    <h1>Financial Instruments</h1>
+    <ul>
+        {% for instrument in instruments %}
+        <li>{{ instrument.symbol }} - {{ instrument.type }}: ${{ instrument.price }}</li>
+        {% endfor %}
+    </ul>
+    <form method="POST">
+        <input name="symbol" placeholder="Symbol">
+        <input name="type" placeholder="Type (equity/option)">
+        <input name="price" placeholder="Price">
+        <button type="submit">Add Instrument</button>
+    </form>
+</body>
+</html>

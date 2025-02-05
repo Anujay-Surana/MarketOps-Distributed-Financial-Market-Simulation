@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package market;
+
+service MarketService {
+  rpc AddInstrument (Instrument) returns (Response);
+  rpc ListInstruments (Empty) returns (InstrumentList);
+  rpc PlaceOrder (Order) returns (Response);
+  rpc QueryOrderBook (Symbol) returns (OrderBook);
+}
+
+message Instrument {
+  string symbol = 1;
+  string type = 2;  // "equity" or "option"
+  double price = 3;
+}
+
+message Order {
+  string symbol = 1;
+  string type = 2;  // "buy" or "sell"
+  double price = 3;
+  int32 quantity = 4;
+}
+
+message Symbol {
+  string symbol = 1;
+}
+
+message OrderBook {
+  string symbol = 1;
+  repeated Order buy_orders = 2;
+  repeated Order sell_orders = 3;
+}
+
+message Response {
+  bool success = 1;
+  string message = 2;
+}
+
+message InstrumentList {
+  repeated Instrument instruments = 1;
+}
+
+message Empty {}

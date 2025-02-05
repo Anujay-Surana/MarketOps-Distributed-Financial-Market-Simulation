@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package analytics;
+
+service AnalyticsService {
+  rpc GetPriceSummary (Symbol) returns (PriceSummary);
+  rpc GetVolumeTrends (Symbol) returns (VolumeTrends);
+}
+
+message Symbol {
+  string symbol = 1;
+}
+
+message PriceSummary {
+  string symbol = 1;
+  double average_price = 2;
+  double highest_price = 3;
+  double lowest_price = 4;
+}
+
+message VolumeTrends {
+  string symbol = 1;
+  repeated double volumes = 2;
+}
